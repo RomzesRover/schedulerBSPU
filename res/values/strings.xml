@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ПИМ 112-15 Расписание</string>
+    <string name="title_section1">Понедельник</string>
+    <string name="title_section2">Вторник</string>
+    <string name="title_section3">Среда</string>
+    <string name="title_section4">Четверг</string>
+    <string name="title_section5">Пятница</string>
+    <string name="title_section6">Суббота</string>
+    <string name="weeks">Учебные Недели: %s</string>
+    <string name="numberInUni">Пара: %s</string>
+    <string name="time">Время: %s</string>
+    <string name="group">Подгруппа: %s</string>
+    <string name="place">Место проведения: %s</string>
+    <string name="curator">Преподователь: %s</string>
+    <string name="type">Тип занятия: %s</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
+    <string name="show">Показать..</string>
+
+    <string-array name="weeks">
+        <item>все</item>
+        <item>1 неделя</item>
+        <item>2 неделя</item>
+        <item>3 неделя</item>
+        <item>4 неделя</item>
+        <item>5 неделя</item>
+        <item>6 неделя</item>
+        <item>7 неделя</item>
+        <item>8 неделя</item>
+        <item>9 неделя</item>
+        <item>10 неделя</item>
+        <item>11 неделя</item>
+        <item>12 неделя</item>
+        <item>13 неделя</item>
+        <item>14 неделя</item>
+        <item>15 неделя</item>
+        <item>16 неделя</item>
+    </string-array>
+    <string-array name="weeks_entryValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6 </item>
+        <item>7 </item>
+        <item>8 </item>
+        <item>9 </item>
+        <item>10 </item>
+        <item>11 </item>
+        <item>12 </item>
+        <item>13 </item>
+        <item>14 </item>
+        <item>15 </item>
+        <item>16 </item>
+    </string-array>
+    <string-array name="group">
+        <item>все</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="group_entryValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>
