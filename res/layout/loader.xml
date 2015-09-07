@@ -51,7 +51,8 @@
             android:layout_marginLeft="15dp"
             android:entries="@array/weeks"
             android:entryValues="@array/weeks_entryValues"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:visibility="invisible" />
         
                 <TextView
             android:id="@+id/textView3"
@@ -70,7 +71,8 @@
             android:layout_marginLeft="15dp"
             android:entries="@array/group"
             android:entryValues="@array/group_entryValues"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

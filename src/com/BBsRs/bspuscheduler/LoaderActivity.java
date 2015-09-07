@@ -9,10 +9,11 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
@@ -27,6 +28,9 @@ public class LoaderActivity extends Activity {
     TextView show;
     SharedPreferences sPref;
     int check=0;
+    
+    Spinner locale;
+    Spinner locale2;
     
     private final Handler handler = new Handler();
 
@@ -43,8 +47,8 @@ public class LoaderActivity extends Activity {
 	    mBackgroundShape = (ImageView) findViewById(R.id.bg);
 	    mBackgroundShapeWhite = (ImageView) findViewById(R.id.bg_white);
 	    show = (TextView)findViewById(R.id.textView1);
-	    final Spinner locale = (Spinner)findViewById(R.id.spinnerLocale);
-	    final Spinner locale2 = (Spinner)findViewById(R.id.spinnerLocale2);
+	    locale = (Spinner)findViewById(R.id.spinnerLocale);
+	    locale2 = (Spinner)findViewById(R.id.spinnerLocale2);
 	    
 	    locale.setSelection(sPref.getInt("week", 0));
 	    locale2.setSelection(sPref.getInt("group", 0));
@@ -112,6 +116,15 @@ public class LoaderActivity extends Activity {
         .scaleY(mFullScreenScale)
         .setInterpolator(new AccelerateDecelerateInterpolator())
         .setDuration(ANIMATION_DURATION);
+        
+        AlphaAnimation anim = new AlphaAnimation(0, 1);
+		anim.setDuration((long)(ANIMATION_DURATION*1.5));
+		anim.setInterpolator(new DecelerateInterpolator());
+		
+		locale.setVisibility(View.VISIBLE);
+		locale2.setVisibility(View.VISIBLE);
+		locale.startAnimation(anim);
+		locale2.startAnimation(anim);
     }
 	
     private float getMeasureScale() {

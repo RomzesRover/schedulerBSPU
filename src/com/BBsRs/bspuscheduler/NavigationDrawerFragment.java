@@ -122,26 +122,37 @@ public class NavigationDrawerFragment extends Fragment {
         	break;
         case Calendar.MONDAY:
         	mCurrentSelectedPosition = 0;
+            if (currentDate.get(Calendar.HOUR_OF_DAY)>=18){
+            	mCurrentSelectedPosition++;
+            }
         	break;
         case Calendar.TUESDAY:
         	mCurrentSelectedPosition = 1;
+            if (currentDate.get(Calendar.HOUR_OF_DAY)>=18){
+            	mCurrentSelectedPosition++;
+            }
         	break;
         case Calendar.WEDNESDAY:
         	mCurrentSelectedPosition = 2;
+            if (currentDate.get(Calendar.HOUR_OF_DAY)>=18){
+            	mCurrentSelectedPosition++;
+            }
         	break;
         case Calendar.THURSDAY:
         	mCurrentSelectedPosition = 3;
+            if (currentDate.get(Calendar.HOUR_OF_DAY)>=18){
+            	mCurrentSelectedPosition++;
+            }
         	break;
         case Calendar.FRIDAY:
         	mCurrentSelectedPosition = 4;
+            if (currentDate.get(Calendar.HOUR_OF_DAY)>=18){
+            	mCurrentSelectedPosition++;
+            }
         	break;
         case Calendar.SATURDAY:
         	mCurrentSelectedPosition = 0;
         	break;
-        }
-        
-        if (currentDate.get(Calendar.HOUR_OF_DAY)>=18){
-        	mCurrentSelectedPosition++;
         }
         
         if (mCurrentSelectedPosition>4)
