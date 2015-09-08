@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -252,10 +253,28 @@ public class MainActivity extends Activity
                     			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
                     		}
                         } else {
-                        	int weekStart = Integer.valueOf(weeks.replaceAll("\\.\\.", "#").split("#")[0]), weekEnd = Integer.valueOf(weeks.replaceAll("\\.\\.", "#").split("#")[1]);
-                        	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
-                        		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.length()>1){
-                        			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                        	String weeksInSplit[] = weeks.replaceAll(" ", "").split(",");
+                        	
+                        	for (String oneWeekValue : weeksInSplit){
+                        		//if this is just number
+                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==1){
+                                	if (sPref.getInt("week", 0)==Integer.parseInt(oneWeekValue)){
+                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.length()>1){
+                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                                			break;
+                                		}
+                                	}
+                        		}
+                        		//if this is range
+                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==2){
+                                	int weekStart = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[0]);
+                                	int weekEnd = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[1]);
+                                	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
+                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.length()>1){
+                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                                			break;
+                                		}
+                                	}
                         		}
                         	}
                         }
@@ -265,6 +284,7 @@ public class MainActivity extends Activity
                 
                 if (discCollection.size()==0){
                 	nope.setVisibility(View.VISIBLE);
+                	nope.setText(getActivity().getString(R.string.emptylist));
                 	list.setVisibility(View.GONE);
                 } else {
                 	nope.setVisibility(View.GONE);
@@ -274,6 +294,9 @@ public class MainActivity extends Activity
                 }
             } catch(Exception ioe) {
                 ioe.printStackTrace();
+                nope.setVisibility(View.VISIBLE);
+                nope.setText(getActivity().getString(R.string.error));
+            	list.setVisibility(View.GONE);
             }
             
             return rootView;

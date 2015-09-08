@@ -14,6 +14,8 @@
     <string name="group">Подгруппа: %s</string>
     <string name="place">Место проведения: %s</string>
     <string name="curator">Преподователь: %s</string>
+    <string name="error">Ошибка отображения. Скорее всего ошибка парса xls таблицы!</string>
+    <string name="emptylist">Кажется в этот день нет занятий..</string>
     <string name="type">Тип занятия: %s</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
