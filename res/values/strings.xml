@@ -12,6 +12,13 @@
     <string name="numberInUni">Пара: %s</string>
     <string name="time">Время: %s</string>
     <string name="group">Подгруппа: %s</string>
+    <string name="group_0">все</string>
+    <string name="group_1">первая</string>
+    <string name="group_2">вторая</string>
+    <string name="parity">Четность: %s</string>
+    <string name="parity_0">все</string>
+    <string name="parity_1">нечетная</string>
+    <string name="parity_2">четная</string>
     <string name="place">Место проведения: %s</string>
     <string name="curator">Преподователь: %s</string>
     <string name="error">Ошибка отображения. Скорее всего ошибка парса xls таблицы!</string>

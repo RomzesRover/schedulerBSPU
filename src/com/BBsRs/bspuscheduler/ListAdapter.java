@@ -52,6 +52,7 @@ public class ListAdapter extends BaseAdapter{
         public TextView place;
         public TextView curator;
         public TextView type;
+        public TextView parity;
     }
     
     @Override
@@ -69,6 +70,7 @@ public class ListAdapter extends BaseAdapter{
             holder.place = (TextView) rowView.findViewById(R.id.place);
             holder.curator = (TextView) rowView.findViewById(R.id.curator);
             holder.type = (TextView) rowView.findViewById(R.id.type);
+            holder.parity = (TextView) rowView.findViewById(R.id.parity);
             rowView.setTag(holder);
         } else {
             holder = (ViewHolder) rowView.getTag();
@@ -78,10 +80,11 @@ public class ListAdapter extends BaseAdapter{
         holder.weeks.setText(String.format(context.getString(R.string.weeks), String.valueOf(discCollection.get(position).weeks)));
         holder.numberInUni.setText(String.format(context.getString(R.string.numberInUni), String.valueOf(discCollection.get(position).numberInUni)));
         holder.Time.setText(String.format(context.getString(R.string.time), String.valueOf(discCollection.get(position).Time)));
-        holder.group.setText(String.format(context.getString(R.string.group), String.valueOf(discCollection.get(position).group)));
+        holder.group.setText(String.format(context.getString(R.string.group), String.valueOf((discCollection.get(position).group.equals("0") ? context.getString(R.string.group_0) : discCollection.get(position).group.equals("1") ? context.getString(R.string.group_1) : discCollection.get(position).group.equals("2") ? context.getString(R.string.group_2) : "undefined"))));
         holder.place.setText(String.format(context.getString(R.string.place), String.valueOf(discCollection.get(position).place)));
         holder.curator.setText(String.format(context.getString(R.string.curator), String.valueOf(discCollection.get(position).curator)));
         holder.type.setText(String.format(context.getString(R.string.type), String.valueOf(discCollection.get(position).type)));
+        holder.parity.setText(String.format(context.getString(R.string.parity), String.valueOf((discCollection.get(position).parity.equals("0") ? context.getString(R.string.parity_0) : discCollection.get(position).parity.equals("1") ? context.getString(R.string.parity_1) : discCollection.get(position).parity.equals("2") ? context.getString(R.string.parity_2) : "undefined"))));
         
         return rowView;
     }

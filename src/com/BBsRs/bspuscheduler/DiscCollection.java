@@ -22,9 +22,10 @@ public class DiscCollection implements Parcelable {
     public String place;
     public String curator;
     public String type;
+    public String parity;
   
 
-  public DiscCollection(String _discName, String _weeks, String _numberInUni, String _Time, String _group, String _place, String _curator, String _type) {
+  public DiscCollection(String _discName, String _weeks, String _numberInUni, String _Time, String _group, String _place, String _curator, String _type, String _parity) {
 	  discName = _discName;
 	  weeks = _weeks;
 	  numberInUni = _numberInUni;
@@ -33,6 +34,7 @@ public class DiscCollection implements Parcelable {
 	  place = _place;
 	  curator = _curator;
 	  type = _type;
+	  parity = _parity;
   }
 
 
@@ -50,6 +52,7 @@ private DiscCollection(Parcel in) {
 	place = in.readString();
 	curator = in.readString();
 	type = in.readString();
+	parity = in.readString();
 }
 
 @Override
@@ -62,6 +65,7 @@ public void writeToParcel(Parcel out, int flags) {
 	 out.writeString(place);
 	 out.writeString(curator);
 	 out.writeString(type);
+	 out.writeString(parity);
 	 
 }
 

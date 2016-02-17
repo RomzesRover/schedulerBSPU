@@ -219,7 +219,7 @@ public class MainActivity extends Activity
                         if (sPref.getInt("week", 0)==0){
                         	//check for group equals
                     		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
-                    			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                    			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type, parity));
                     		}
                         } else {
                         	//check for week parity equals
@@ -233,7 +233,7 @@ public class MainActivity extends Activity
 	                                	if (sPref.getInt("week", 0)==Integer.parseInt(oneWeekValue)){
 	                                		//check for group equals
 	                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
-	                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+	                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type, parity));
 	                                			break;
 	                                		}
 	                                	}
@@ -245,7 +245,7 @@ public class MainActivity extends Activity
 	                                	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
 	                                		//check for group equals
 	                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
-	                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+	                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type, parity));
 	                                			break;
 	                                		}
 	                                	}
