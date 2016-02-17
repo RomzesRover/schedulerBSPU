@@ -215,34 +215,42 @@ public class MainActivity extends Activity
 		                String type = lines.get(r).split(";")[9];
 		                String parity = lines.get(r).split(";")[4];
 		                
+		                //check for week equals
                         if (sPref.getInt("week", 0)==0){
+                        	//check for group equals
                     		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
                     			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
                     		}
                         } else {
-                        	String weeksInSplit[] = weeks.replaceAll(" ", "").split(",");
+                        	//check for week parity equals
+                        	if ((parity.equals("0")) || (parity.equals("1") && sPref.getInt("week", 0)%2!=0) || (parity.equals("2") && sPref.getInt("week", 0)%2==0)){
+                        		//check for week equals
+                        		String weeksInSplit[] = weeks.replaceAll(" ", "").split(",");
                         	
-                        	for (String oneWeekValue : weeksInSplit){
-                        		//if this is just number
-                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==1){
-                                	if (sPref.getInt("week", 0)==Integer.parseInt(oneWeekValue)){
-                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
-                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
-                                			break;
-                                		}
-                                	}
-                        		}
-                        		//if this is range
-                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==2){
-                                	int weekStart = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[0]);
-                                	int weekEnd = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[1]);
-                                	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
-                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
-                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
-                                			break;
-                                		}
-                                	}
-                        		}
+	                        	for (String oneWeekValue : weeksInSplit){
+	                        		//if this is just number
+	                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==1){
+	                                	if (sPref.getInt("week", 0)==Integer.parseInt(oneWeekValue)){
+	                                		//check for group equals
+	                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
+	                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+	                                			break;
+	                                		}
+	                                	}
+	                        		}
+	                        		//if this is range
+	                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==2){
+	                                	int weekStart = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[0]);
+	                                	int weekEnd = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[1]);
+	                                	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
+	                                		//check for group equals
+	                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
+	                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+	                                			break;
+	                                		}
+	                                	}
+	                        		}
+	                        	}
                         	}
                         }
                 		
