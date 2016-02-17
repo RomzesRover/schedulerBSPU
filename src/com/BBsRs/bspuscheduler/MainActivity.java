@@ -3,6 +3,7 @@ package com.BBsRs.bspuscheduler;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -156,142 +157,98 @@ public class MainActivity extends Activity
             ListView list = (ListView)rootView.findViewById(R.id.listView1);
             
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(getActivity().getAssets().open("aim_12-15_2.csv")));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(getActivity().getAssets().open("aim_12-15_2.csv"), "Cp1251"));
 
                 // do reading, usually loop until end of file reading  
-                StringBuilder sb = new StringBuilder();
+                ArrayList<String> lines = new ArrayList<String>();
                 String mLine;
+                
+                //define range of days
+                int days[] = {0, 0, 0, 0, 0, 0, 0, 0};
+                int currentLine = 0;
+                
                 while ((mLine = reader.readLine()) != null) {
                     //process line
-                	sb.append(mLine); // process line 
-                    Log.e("line", mLine);
+                	lines.add(mLine); // process line 
+                	
+	                if(mLine != null && mLine.contains(getString(R.string.title_section1))) {
+	                	days[1] = currentLine;
+	                }
+	                if(mLine != null && mLine.contains(getString(R.string.title_section2))) {
+	                	days[2] = currentLine;
+	                }
+	                if(mLine != null && mLine.contains(getString(R.string.title_section3))) {
+	                	days[3] = currentLine;
+	                }
+	                if(mLine != null && mLine.contains(getString(R.string.title_section4))) {
+	                	days[4] = currentLine;
+	                }
+	                if(mLine != null && mLine.contains(getString(R.string.title_section5))) {
+	                	days[5] = currentLine;
+	                }
+	                if(mLine != null && mLine.contains(getString(R.string.title_section6))) {
+	                	days[6] = currentLine;
+	                }
+	                
+	                currentLine++;
                  }
                 reader.close();
-            	
-//                POIFSFileSystem fs = new POIFSFileSystem(getActivity().getAssets().open("schedule1.xls"));
-//                HSSFWorkbook wb = new HSSFWorkbook(fs);
-//                HSSFSheet sheet = wb.getSheetAt(0);
-//                HSSFRow row;
-//                HSSFCell cell;
-//
-//                int rows; // No of rows
-//                rows = sheet.getPhysicalNumberOfRows();
-//
-//                int cols = 0; // No of columns
-//                int tmp = 0;
-//
-//                // This trick ensures that we get the data properly even if it doesn't start from first few rows
-//                for(int i = 0; i < 10 || i < rows; i++) {
-//                    row = sheet.getRow(i);
-//                    if(row != null) {
-//                        tmp = sheet.getRow(i).getPhysicalNumberOfCells();
-//                        if(tmp > cols) cols = tmp;
-//                    }
-//                }
-//                
-//                int days[] = {-1, 0, rows, rows, rows, rows, rows, rows};
-//                for(int r = 0; r < rows; r++) {
-//                    row = sheet.getRow(r);
-//                    if(row != null && row.getCell(1).toString().contains(getString(R.string.title_section1))) {
-//                    	days[1] = r;
-//                    }
-//                    if(row != null && row.getCell(1).toString().contains(getString(R.string.title_section2))) {
-//                    	days[2] = r;
-//                    }
-//                    if(row != null && row.getCell(1).toString().contains(getString(R.string.title_section3))) {
-//                    	days[3] = r;
-//                    }
-//                    if(row != null && row.getCell(1).toString().contains(getString(R.string.title_section4))) {
-//                    	days[4] = r;
-//                    }
-//                    if(row != null && row.getCell(1).toString().contains(getString(R.string.title_section5))) {
-//                    	days[5] = r;
-//                    }
-//                    if(row != null && row.getCell(1).toString().contains(getString(R.string.title_section6))) {
-//                    	days[6] = r;
-//                    }
-//                }
-//                
+                
+                //create collection
                 ArrayList<DiscCollection> discCollection = new ArrayList<DiscCollection>();
-//                
-//                for(int r = days[fragmentNumber]; r < days[fragmentNumber+1]; r++) {
-//                    row = sheet.getRow(r);
-//                    if(row != null) {
-//                    	
-//                    	String rowInText = "";
-//                    	
-//                    	
-//                        for(int c = 2; c < cols; c++) {
-//                            cell = row.getCell((short)c);
-//                            if(cell != null) {
-//                            	if (cell.toString() == null || cell.toString().length()<1){
-//                        			if (sheet.getRow(r-1) != null)
-//                        				cell = sheet.getRow(r-1).getCell((short)c);
-//                            	}
-//                            	
-//                            	if (cell.toString() == null || cell.toString().length()<1){
-//                        			if (sheet.getRow(r-2) != null)
-//                        				cell = sheet.getRow(r-2).getCell((short)c);
-//                            	}
-//                            	
-//                            	if (cell.toString() == null || cell.toString().length()<1){
-//                        			if (sheet.getRow(r-3) != null)
-//                        				cell = sheet.getRow(r-3).getCell((short)c);
-//                            	}
-//                            	
-//                            	if (cell.toString() == null || cell.toString().length()<1){
-//                        			if (sheet.getRow(r-4) != null)
-//                        				cell = sheet.getRow(r-4).getCell((short)c);
-//                            	}
-//                            	
-//                            	cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-//                            	rowInText+=cell.toString()+"#";
-//                            }
-//                        }
-//                        
-//                        String discName = rowInText.split("#")[4];
-//                    	String weeks = rowInText.split("#")[2];
-//                        String numberInUni = rowInText.split("#")[0];
-//                        String Time = rowInText.split("#")[1];
-//                        String group = rowInText.split("#")[3];
-//                        String place = rowInText.split("#")[5];
-//                        String curator = rowInText.split("#")[6];
-//                        String type = rowInText.split("#")[7];
-//                        
-//                        
-//                        if (sPref.getInt("week", 0)==0){
-//                    		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.length()>1){
-//                    			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
-//                    		}
-//                        } else {
-//                        	String weeksInSplit[] = weeks.replaceAll(" ", "").split(",");
-//                        	
-//                        	for (String oneWeekValue : weeksInSplit){
-//                        		//if this is just number
-//                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==1){
-//                                	if (sPref.getInt("week", 0)==Integer.parseInt(oneWeekValue)){
-//                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.length()>1){
-//                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
-//                                			break;
-//                                		}
-//                                	}
-//                        		}
-//                        		//if this is range
-//                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==2){
-//                                	int weekStart = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[0]);
-//                                	int weekEnd = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[1]);
-//                                	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
-//                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.length()>1){
-//                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
-//                                			break;
-//                                		}
-//                                	}
-//                        		}
-//                        	}
-//                        }
-//                        
-//                    }
-//                }
+                
+                int numberInUri=1;
+                for (int r = days[fragmentNumber]; r < days[fragmentNumber+1]; r++) {
+                	if (lines.get(r).split(";").length>3){
+                		
+                		//calculate current number in uri
+                		if (lines.get(r).split(";")[1].length()>0)
+                			numberInUri=Integer.parseInt(lines.get(r).split(";")[1]);
+                		
+		                String discName = lines.get(r).split(";")[6];
+		                String weeks = lines.get(r).split(";")[3];
+		                String numberInUni = numberInUri+"";
+		                String Time = lines.get(r).split(";")[2];
+		                String group = lines.get(r).split(";")[5];
+		                String place = lines.get(r).split(";")[7];
+		                String curator = lines.get(r).split(";")[8];
+		                String type = lines.get(r).split(";")[9];
+		                String parity = lines.get(r).split(";")[4];
+		                
+                        if (sPref.getInt("week", 0)==0){
+                    		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
+                    			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                    		}
+                        } else {
+                        	String weeksInSplit[] = weeks.replaceAll(" ", "").split(",");
+                        	
+                        	for (String oneWeekValue : weeksInSplit){
+                        		//if this is just number
+                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==1){
+                                	if (sPref.getInt("week", 0)==Integer.parseInt(oneWeekValue)){
+                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
+                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                                			break;
+                                		}
+                                	}
+                        		}
+                        		//if this is range
+                        		if (oneWeekValue.replaceAll("\\.\\.", "#").split("#").length==2){
+                                	int weekStart = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[0]);
+                                	int weekEnd = Integer.valueOf(oneWeekValue.replaceAll("\\.\\.", "#").split("#")[1]);
+                                	if (sPref.getInt("week", 0)>=weekStart && sPref.getInt("week", 0)<=weekEnd){
+                                		if (sPref.getInt("group", 0)==0 || group.contains(""+sPref.getInt("group", 0)) || group.equals("0")){
+                                			discCollection.add(new DiscCollection(discName, weeks, numberInUni, Time, group, place, curator, type));
+                                			break;
+                                		}
+                                	}
+                        		}
+                        	}
+                        }
+                		
+                		Log.e("man", lines.get(r).split(";")[2]);
+                	}
+                }
                 
                 if (discCollection.size()==0){
                 	nope.setVisibility(View.VISIBLE);
