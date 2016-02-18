@@ -157,7 +157,17 @@ public class MainActivity extends Activity
             ListView list = (ListView)rootView.findViewById(R.id.listView1);
             
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(getActivity().getAssets().open("aim_12-15_2.csv"), "Cp1251"));
+            	
+            	String current_group = "aim_12-15_2.csv";
+            	switch (sPref.getInt("group_m", 0)){
+            	case 0:
+            		current_group = "aim_12-15_2.csv";
+            		break;
+            	case 1:
+            		current_group = "aip_31-13_2.csv";
+            		break;
+            	}
+                BufferedReader reader = new BufferedReader(new InputStreamReader(getActivity().getAssets().open(current_group), "Cp1251"));
 
                 // do reading, usually loop until end of file reading  
                 ArrayList<String> lines = new ArrayList<String>();

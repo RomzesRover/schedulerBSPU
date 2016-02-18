@@ -35,14 +35,34 @@
             android:src="@drawable/logo_app" />
 
         <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Выбери свою группу:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#fff" />
+
+        <Spinner
+            android:id="@+id/spinnerGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:entries="@array/group_m"
+            android:entryValues="@array/group_m_entryValues"
+            android:textColor="#fff"
+            android:visibility="invisible" />
+
+        <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
             android:text="Выбери текущую учебную неделю:"
-            android:textColor="#fff"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#fff" />
 
         <Spinner
             android:id="@+id/spinnerLocale"
@@ -53,16 +73,16 @@
             android:entryValues="@array/weeks_entryValues"
             android:textColor="#fff"
             android:visibility="invisible" />
-        
-                <TextView
+
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
             android:text="Выбери свою подгруппу:"
-            android:textColor="#fff"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#fff" />
 
         <Spinner
             android:id="@+id/spinnerLocale2"
@@ -73,7 +93,6 @@
             android:entryValues="@array/group_entryValues"
             android:textColor="#fff"
             android:visibility="invisible" />
-
     </LinearLayout>
 
     <TextView
