@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ПИМ 112-15 Расписание</string>
+    <string name="app_name">ИПОиИТ Расписание</string>
     <string name="title_section1">Понедельник</string>
     <string name="title_section2">Вторник</string>
     <string name="title_section3">Среда</string>

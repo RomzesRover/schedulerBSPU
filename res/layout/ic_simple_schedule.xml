@@ -169,7 +169,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_menu_allfriends" />
+                android:src="@drawable/ic_menu_today" />
 
             <TextView
                 android:id="@+id/parity"
