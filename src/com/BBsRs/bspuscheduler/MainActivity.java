@@ -192,23 +192,30 @@ public class MainActivity extends Activity
 	                
 	                currentLine++;
                  }
+                days[7]=currentLine;
                 reader.close();
                 
                 //create collection
                 ArrayList<DiscCollection> discCollection = new ArrayList<DiscCollection>();
                 
                 int numberInUri=1;
+                String TimeInUri="8:30-10:05";
                 for (int r = days[fragmentNumber]; r < days[fragmentNumber+1]; r++) {
-                	if (lines.get(r).split(";").length>3){
+                	
+                	if (lines.get(r).split(";").length==10){
                 		
                 		//calculate current number in uri
                 		if (lines.get(r).split(";")[1].length()>0)
                 			numberInUri=Integer.parseInt(lines.get(r).split(";")[1]);
                 		
+                		//calculate current number in uri
+                		if (lines.get(r).split(";")[2].length()>0)
+                			TimeInUri=(lines.get(r).split(";")[2]);
+                		
 		                String discName = lines.get(r).split(";")[6];
 		                String weeks = lines.get(r).split(";")[3];
 		                String numberInUni = numberInUri+"";
-		                String Time = lines.get(r).split(";")[2];
+		                String Time = TimeInUri;
 		                String group = lines.get(r).split(";")[5];
 		                String place = lines.get(r).split(";")[7];
 		                String curator = lines.get(r).split(";")[8];
