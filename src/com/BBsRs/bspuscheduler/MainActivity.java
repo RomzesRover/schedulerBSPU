@@ -1,9 +1,10 @@
 package com.BBsRs.bspuscheduler;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -157,17 +158,8 @@ public class MainActivity extends Activity
             ListView list = (ListView)rootView.findViewById(R.id.listView1);
             
             try {
-            	
-            	String current_group = "aim_12-15_2.csv";
-            	switch (sPref.getInt("group_m", 0)){
-            	case 0:
-            		current_group = "aim_12-15_2.csv";
-            		break;
-            	case 1:
-            		current_group = "aip_31-13_2.csv";
-            		break;
-            	}
-                BufferedReader reader = new BufferedReader(new InputStreamReader(getActivity().getAssets().open(current_group), "Cp1251"));
+            	File file = new File (getActivity().getFilesDir(), "schedule.csv");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "Cp1251"));
 
                 // do reading, usually loop until end of file reading  
                 ArrayList<String> lines = new ArrayList<String>();

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="choose_three">Выбери группу.</string>
+    <string name="choose_two">Выбери Факультет.</string>
+    <string name="choose_one">Выбери ВУЗ.</string>
+    <string name="wait">Пожалуйста, подождите.</string>
 
     <string name="app_name">ИПОиИТ Расписание</string>
     <string name="title_section1">Понедельник</string>

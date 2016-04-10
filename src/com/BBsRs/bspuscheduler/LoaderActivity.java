@@ -1,5 +1,7 @@
 package com.BBsRs.bspuscheduler;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,7 +34,6 @@ public class LoaderActivity extends Activity {
     
     Spinner locale;
     Spinner locale2;
-    Spinner group;
     
     private final Handler handler = new Handler();
 
@@ -39,10 +41,18 @@ public class LoaderActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    this.setContentView(R.layout.loader);
 	    
-	  //set up preferences
+		  //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        
+        File file = new File (this.getFilesDir(), "schedule.csv");
+        Log.i("dfds", file.getAbsolutePath());
+        if (!file.exists()){
+        	startActivity(new Intent(this, ListOfAvailableSchedules.class));
+        	finish();
+        }
+	    
+	    this.setContentView(R.layout.loader);
 	    
 	    //init views
 	    mBackgroundShape = (ImageView) findViewById(R.id.bg);
@@ -50,11 +60,9 @@ public class LoaderActivity extends Activity {
 	    show = (TextView)findViewById(R.id.textView1);
 	    locale = (Spinner)findViewById(R.id.spinnerLocale);
 	    locale2 = (Spinner)findViewById(R.id.spinnerLocale2);
-	    group = (Spinner)findViewById(R.id.spinnerGroup);
 	    
 	    locale.setSelection(sPref.getInt("week", 0));
 	    locale2.setSelection(sPref.getInt("group", 0));
-	    group.setSelection(sPref.getInt("group_m", 0));
 	    
 	    locale.setOnItemSelectedListener(new OnItemSelectedListener(){    
 	    	@Override
@@ -77,20 +85,6 @@ public class LoaderActivity extends Activity {
 	    		if(check>1){
 		    		Editor ed = sPref.edit();   
 		    		ed.putInt("group", i); 	
-		    		ed.commit();
-	    		}
-	    	} 
-	    	@Override     
-	    	public void onNothingSelected(AdapterView<?> parentView) {}
-	    }); 
-	    
-	    group.setOnItemSelectedListener(new OnItemSelectedListener(){    
-	    	@Override
-	    	public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-	    		check++;
-	    		if(check>1){
-		    		Editor ed = sPref.edit();   
-		    		ed.putInt("group_m", i); 	
 		    		ed.commit();
 	    		}
 	    	} 
@@ -140,8 +134,6 @@ public class LoaderActivity extends Activity {
 		
 		locale.setVisibility(View.VISIBLE);
 		locale2.setVisibility(View.VISIBLE);
-		group.setVisibility(View.VISIBLE);
-		group.startAnimation(anim);
 		locale.startAnimation(anim);
 		locale2.startAnimation(anim);
     }
